@@ -7,8 +7,16 @@ function App() {
   const [todo, settodo] = useState("")
   const [todos, settodos] = useState([])
 
+  
 
-  const handleEdit = () => {
+
+  const handleEdit = (e, id) => {
+    let t = todos.filter(i=>i.id === id)
+    settodo(t[0].todo)
+    let newTodos = todos.filter(item => {
+      return item.id !== id
+    })
+    settodos(newTodos)
 
   }
 
@@ -65,8 +73,8 @@ function App() {
               </div>
 
               <div className="buttons">
-                <button onClick={handleEdit} className='bg-violet-500 hover:bg-violet-800 p-5 py-1 font-bold text-white rounded-md mx-1 text-sm'>Edit</button>
-                <button onClick={(e) => { handleDelete(e, item.id) }} className='bg-violet-500 hover:bg-violet-800 p-5 py-1 font-bold text-white rounded-md mx-1 text-sm'>Delete</button>
+                <button onClick={(e)=>handleEdit(e,item.id)} className='bg-violet-500 hover:bg-violet-800 p-2 py-1 font-bold text-white rounded-md mx-1 text-sm'>Edit</button>
+                <button onClick={(e) => { handleDelete(e, item.id) }} className='bg-violet-500 hover:bg-violet-800 p-2 py-1 font-bold text-white rounded-md mx-1 text-sm'>Delete</button>
 
               </div>
 
